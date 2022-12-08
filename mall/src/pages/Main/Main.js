@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Cart from '../../components/Cart/Cart'
 import Product from '../../components/Products/Product'
+import useGetData from '../../hooks/useGetData'
 
 const Wrapper = styled.main`
     display: flex;
@@ -20,15 +21,12 @@ const ProductLists = styled.ul`
 
 
 export default function Main() {
+    const item = useGetData("https://test.api.weniv.co.kr/mall")
+
     return (
         <Wrapper>
             <ProductLists>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
+                {item.map(item => <Product key={item.id} {...item} />)}
             </ProductLists>
             <Cart/>
         </Wrapper>

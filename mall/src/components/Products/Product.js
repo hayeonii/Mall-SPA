@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import '../../assets/css/reset.css'
 import heart from '../../assets/images/icon-heart.svg'
+import useGetData from '../../hooks/useGetData'
 
 const ProductItem = styled.li`
     position: relative;
@@ -18,9 +18,14 @@ const ProductImg = styled.img`
     overflow: hidden;
 `
 const ProductTitle = styled.p`
+    width: 338px;
     margin-top: 20px;
     font-size: 18px;
+    line-height: 22px;
     color: #333;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 `
 
 const ProductPrice = styled.strong`
@@ -45,13 +50,12 @@ const LikeBtn = styled.button`
     border-style: none;
 `
 
-
-export default function Product() {
+export default function Product({productName, price, thumbnailImg }) {
     return (
         <ProductItem>
-            <ProductImg src="https://test.api.weniv.co.kr/asset/img/1/thumbnailImg.jpg" alt="" />
-            <ProductTitle>Hack Your Life 개발자 노트북 파우치</ProductTitle>
-            <ProductPrice>29,000<span>원</span></ProductPrice>
+            <ProductImg src={`https://test.api.weniv.co.kr/${thumbnailImg}`} alt="" />
+            <ProductTitle>{productName}</ProductTitle>
+            <ProductPrice>{price}<span>원</span></ProductPrice>
             <LikeBtn></LikeBtn>
         </ProductItem>
     )
