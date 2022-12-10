@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function useGetData(url) {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(url)
-      .then(res => {
-        return res.json()
-      })
-      .then(data => {
-        setData(data)
-      })
-  }, [url])
+    axios.get(url).then((res) => setData(res.data));
+  }, [url]);
 
-  return data 
+  return data;
 }
